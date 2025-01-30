@@ -1,20 +1,21 @@
 package ru.smax.social.network.dialog;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Builder;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
-import java.util.UUID;
 
 @Builder
 public record Message(
-        UUID id,
         String dialogId,
+
+        @JsonProperty("author")
         int author,
+
+        @JsonProperty("text")
         String text,
 
-        @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss.SSSSSS")
-        LocalDateTime sentAt
+        @JsonProperty("sent_at")
+        long sentAt
 ) implements Serializable {
 }
