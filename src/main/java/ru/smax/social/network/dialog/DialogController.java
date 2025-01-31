@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.net.SocketException;
 import java.util.List;
 
 @Slf4j
@@ -17,12 +18,6 @@ import java.util.List;
 @RestController
 public class DialogController {
     private final DialogService dialogService;
-
-    @PostMapping
-    public void createDialog(@RequestBody CreateDialogRequest request) {
-        log.debug("Requested create dialog for users {}", request.userIds);
-        dialogService.createDialog(request.userIds);
-    }
 
     @GetMapping("/{from}/{to}")
     public DialogResponse getDialog(@PathVariable Integer from,
@@ -37,11 +32,6 @@ public class DialogController {
                             @RequestBody SendMessageRequest request) {
         log.debug("Requested send message from {} to {}: {}", from, to, request);
         dialogService.sendMessage(from, to, request.text);
-    }
-
-    public record CreateDialogRequest(
-            List<Integer> userIds
-    ) {
     }
 
     public record SendMessageRequest(
