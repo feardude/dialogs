@@ -35,8 +35,8 @@ public class DialogService {
 
         log.info("Started generating messages");
         var random = new Random();
-        int users = 1000;
-        int dialogs = 100;
+        int users = 100;
+        int dialogs = 10;
         int messages = 10;
         for (int i = 1; i <= users; i++) {
             generateDialogsWithMessages(dialogs, i, users, messages, random);
