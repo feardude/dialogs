@@ -3,7 +3,13 @@ version: '3.9'
 services:
 
   redis:
-    container_name: redis
+    container_name: redis-dialogs
     image: "redis:latest"
     ports:
-      - "6379:6379"
+      - "16379:6379"
+
+  zipkin:
+    container_name: zipkin
+    image: "openzipkin/zipkin"
+    ports:
+      - "9411:9411"
